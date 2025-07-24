@@ -6,8 +6,7 @@ public class Main {
             new VentanaPrincipal().setVisible(true);
         });
 
-        // Código para pruebas por consola o simulaciones automáticas.
-        // Descomenta si quieres ejecutar estas pruebas fuera de la interfaz gráfica.
+    
         /*
         parque.juegos();
         parque.trabajadores();

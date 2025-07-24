@@ -1,15 +1,14 @@
 package AdministradorCentralParque;
 
 import Tienda.VentanaTienda;
+import boleto.VentanaBoleto;
+import java.awt.*;
+import javax.swing.*;
+import juegos.VentanaJuego;
+import personas.GestionTrabajador;
+import personas.VentanaTrabajadores;
 import restaurante.Restaurante;
 import restaurante.VentanaRestaurante;
-import personas.GestionTrabajador;
-import personas.VentanaTrabajadores;   
-import boleto.VentanaBoleto;
-import juegos.VentanaJuego;
-
-import javax.swing.*;
-import java.awt.*;
 
 public class VentanaPrincipal extends JFrame {
 
@@ -49,7 +48,6 @@ public class VentanaPrincipal extends JFrame {
 
         add(panelBotones, BorderLayout.CENTER);
 
-        // Acciones de los botones con las instancias necesarias
         btnTienda.addActionListener(e -> {
             VentanaTienda tienda = new VentanaTienda();
             tienda.setVisible(true);
@@ -91,14 +89,14 @@ public class VentanaPrincipal extends JFrame {
             ventana.setVisible(true);
         });
 
-        // Para pruebas por consola:
-        /*
+
         Parque parque = new Parque();
         parque.juegos();
         parque.trabajadores();
+        /*
         parque.simularVisitaCliente();
         parque.mostrarFinanzas();
-        */
+         */
     }
 }
 
