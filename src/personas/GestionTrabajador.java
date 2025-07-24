@@ -87,7 +87,6 @@ public class GestionTrabajador {
         }
         registro.registrarGasto(total);
         System.out.println("Total pagado a todos los trabajadores: " + total);
-
     }
     public void reponerIngredientes(RegistroFinanciero registro) {
         double gasto = 100;

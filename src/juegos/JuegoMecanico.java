@@ -2,7 +2,6 @@ package juegos;
 
 import boleto.*;
 import AdministradorCentralParque.RegistroFinanciero;
-import promociones.*;
 
 public class JuegoMecanico extends Juego {
     private int edadMinima;

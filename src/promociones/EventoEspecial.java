@@ -19,10 +19,5 @@ public class EventoEspecial {
     public Descuento getDescuento() {
         return descuento;
     }
-    public void setTematica(String tematica) {
-        this.tematica = tematica;
-    }
-    public void setDescuento(Descuento descuento) {
-        this.descuento = descuento;
-    }
+
 }
