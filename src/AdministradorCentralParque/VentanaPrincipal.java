@@ -17,17 +17,22 @@ public class VentanaPrincipal extends JFrame {
     private Restaurante restaurante;
 
     public VentanaPrincipal() {
-        // Inicializaciones centrales
+        
         gestionTrabajador = new GestionTrabajador();
         registroFinanciero = new RegistroFinanciero();
         restaurante = new Restaurante();
 
         setTitle("Administración del Parque");
-        setSize(600, 500);
+        setSize(1000, 800);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         getContentPane().setBackground(new Color(240, 248, 255));
         setLayout(new BorderLayout(10, 10));
+
+        JLabel titulo = new JLabel("Bienvenido a tu gestor del parque", SwingConstants.CENTER);
+        titulo.setFont(new Font("Segoe UI", Font.BOLD, 28));
+        titulo.setForeground(new Color(50, 50, 120));
+        add(titulo, BorderLayout.NORTH);
 
         JPanel panelBotones = new JPanel(new GridLayout(2, 3, 15, 15));
         panelBotones.setBackground(new Color(200, 220, 255));

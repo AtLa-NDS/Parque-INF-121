@@ -70,20 +70,21 @@ public class VentanaJuego extends JFrame {
 
         btnIniciar.addActionListener(e -> {
             areaTexto.append("\nIntentando iniciar juego mecánico...\n");
-            juegoMecanico.iniciar();
+            areaTexto.append(juegoMecanico.iniciar() + "\n");
+
             areaTexto.append("Intentando iniciar espectáculo...\n");
-            espectaculo.iniciar();
+            areaTexto.append(espectaculo.iniciar() + "\n");
         });
 
         btnFinalizar.addActionListener(e -> {
             areaTexto.append("\nFinalizando juego mecánico...\n");
-            juegoMecanico.finalizar();
+            areaTexto.append(juegoMecanico.finalizar() + "\n");
         });
 
         btnCambiarEstado.addActionListener(e -> {
             boolean nuevoEstado = !juegoMecanico.getEstado();
-            juegoMecanico.cambiarEstado(nuevoEstado);
-            areaTexto.append("\nEstado cambiado a: " + (nuevoEstado ? "Operativo" : "Mantenimiento") + "\n");
+            String mensaje = juegoMecanico.cambiarEstado(nuevoEstado);
+            areaTexto.append("\n" + mensaje + "\n");
         });
 
         btnPermitirAcceso.addActionListener(e -> {
@@ -93,7 +94,8 @@ public class VentanaJuego extends JFrame {
 
                 Boleto boletoPrueba = new Boleto(edad, altura);
                 areaTexto.append("\nVerificando acceso para cliente con edad " + edad + " y altura " + altura + "...\n");
-                juegoMecanico.permitirAcceso(boletoPrueba, registro);
+                String resultado = juegoMecanico.permitirAcceso(boletoPrueba, registro);
+                areaTexto.append(resultado + "\n");
             } catch (NumberFormatException ex) {
                 JOptionPane.showMessageDialog(this, "Edad y altura deben ser números válidos");
             }

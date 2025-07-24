@@ -1,7 +1,7 @@
 package Tienda;
 
 import AdministradorCentralParque.RegistroFinanciero;
-
+import BD.*;
 public class Producto {
     private String nombre;
     private int cantidad;
@@ -36,6 +36,8 @@ public class Producto {
             cantidad -= unidades;
             double monto = unidades * precio;
             registro.registrarIngreso(monto);
+            RegistroFinancieroBD.guardarRegistro(monto, 0);
+
             return "Se vendieron " + unidades + " unidades. Ingreso: " + monto;
         } else {
             return "No hay suficiente stock.";
@@ -45,6 +47,7 @@ public class Producto {
     public String reponerInventario(int cantidad, RegistroFinanciero registro) {
         double gasto = cantidad * precio * 0.2;
         registro.registrarGasto(gasto);
+        RegistroFinancieroBD.guardarRegistro(0, gasto);
         this.cantidad += cantidad;
         return "Se han repuesto " + cantidad + " unidades. Gasto: " + gasto;
     }

@@ -1,6 +1,8 @@
 package restaurante;
 
 import AdministradorCentralParque.RegistroFinanciero;
+import BD.RegistroFinancieroBD;
+
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -61,6 +63,8 @@ public class Restaurante {
     public void clienteRestaurante(RegistroFinanciero registro) {
         double consumo = 10 + random.nextInt(90);
         registro.registrarIngreso(consumo);
+        RegistroFinancieroBD.guardarRegistro(consumo, 0);
+
 
         String mensaje1 = "Un cliente ha comido en el restaurante.";
         String mensaje2 = "Ingreso recibido: " + consumo;
@@ -73,6 +77,8 @@ public class Restaurante {
     public void reponerIngredientes(RegistroFinanciero registro) {
         double gasto = 100;
         registro.registrarGasto(gasto);
+        RegistroFinancieroBD.guardarRegistro(0, gasto);
+
 
         String mensaje = "Gasto por reposición de ingredientes: " + gasto;
         System.out.println(mensaje);
