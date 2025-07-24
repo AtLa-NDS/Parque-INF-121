@@ -8,14 +8,16 @@ public class Main {
 
         // Código para pruebas por consola o simulaciones automáticas.
         // Descomenta si quieres ejecutar estas pruebas fuera de la interfaz gráfica.
-        
         /*
-        Parque parque = new Parque();
         parque.juegos();
         parque.trabajadores();
-        parque.simularVisitaCliente();
         parque.mostrarFinanzas();
         */
+        Parque parque = new Parque();
+        parque.trabajadores();
+        parque.simularVisitaCliente();
+
+
     }
 }
 

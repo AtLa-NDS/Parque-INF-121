@@ -1,0 +1,23 @@
+[
+  {
+    "nombre": "Juan Pérez",
+    "edad": 30,
+    "nroId": 12345,
+    "cargo": "Supervisor",
+    "sueldo": 2500.0
+  },
+  {
+    "nombre": "María Gómez",
+    "edad": 25,
+    "nroId": 23456,
+    "cargo": "Cajera",
+    "sueldo": 1800.5
+  },
+  {
+    "nombre": "Carlos Ruiz",
+    "edad": 40,
+    "nroId": 34567,
+    "cargo": "Mecánico",
+    "sueldo": 3200.75
+  }
+]

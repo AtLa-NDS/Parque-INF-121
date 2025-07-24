@@ -1,11 +1,17 @@
 package AdministradorCentralParque;
 
+import BD.TrabajadorBD;
 import boleto.*;
 import juegos.*;
 import personas.*;
-import promociones.*;
 import restaurante.*;
 import Tienda.*;
+
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import java.io.FileReader;
+import java.lang.reflect.Type;
+import java.util.List;
 
 public class Parque {
     private RegistroFinanciero registro;
@@ -59,15 +65,42 @@ public class Parque {
     }
 
     public void trabajadores(){
+        try {
+            Gson gson = new Gson();
+            FileReader reader = new FileReader("trabajadores.json");
 
+            Type listaTrabajadores = new TypeToken<List<Trabajador>>() {}.getType();
+            List<Trabajador> trabajadores = gson.fromJson(reader, listaTrabajadores);
+
+            for (Trabajador t : trabajadores) {
+                TrabajadorBD.insertarTrabajador(t);
+            }
+            System.out.println("Los trabajadores fueron agragasdos correctamente");
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("No se pudo cargar a los trabajadores " + e.getMessage());
+        }
+        // a;adir manuealmente trabajadores
+        /*
+        Trabajador t1 = new Trabajador("Juan Pérez", 30, 12345, "Supervisor", 2500.00);
+        TrabajadorBD.insertarTrabajador(t1);
+
+        Trabajador t2 = new Trabajador("María Gómez", 25, 23456, "Cajera", 1800.50);
+        TrabajadorBD.insertarTrabajador(t2);
+
+        Trabajador t3 = new Trabajador("Carlos Ruiz", 40, 34567, "Mecánico", 3200.75);
+        TrabajadorBD.insertarTrabajador(t3);
+
+        Trabajador t4 = new Trabajador("Lucía Torres", 29, 45678, "Guía de parque", 2100.00);
+        TrabajadorBD.insertarTrabajador(t4);
+
+        Trabajador t5 = new Trabajador("Andrés López", 35, 56789, "Encargado de seguridad", 2800.90);
+        TrabajadorBD.insertarTrabajador(t5);
+        */
         // Añadir trabajador
         Trabajador empl1 = new Trabajador("Raul Mande",20,100,"Administrador",500.0 );
         empl1.mostrarInfoEmpleado();
         gestor.añadirTrabajador(empl1);
-
-        gestor.añadirTrabajador(new Trabajador("Juan Pérez", 35, 101, "Gerente", 450.0));
-        gestor.añadirTrabajador(new Trabajador("María López", 28, 102, "Supervisor", 380.0));
-        gestor.añadirTrabajador(new Trabajador("Carlos Ruiz", 42, 103, "Técnico", 320.0));
 
         // mostrar lista de trabajadores
         gestor.mostrarListaTrabajadores();
@@ -88,7 +121,7 @@ public class Parque {
         gestor.mostrarListaTrabajadores();
 
         // pagar sueldo
-        gestor.pagarSueldo(registro);
+        //gestor.pagarSueldo(registro);
 
     }
     public void juegos(){

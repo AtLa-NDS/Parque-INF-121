@@ -2,6 +2,8 @@ package boleto;
 import AdministradorCentralParque.RegistroFinanciero;
 
 import java.util.ArrayList;
+
+import BD.RegistroFinancieroBD;
 import promociones.*;
 public class Boleto extends Cliente {
     private String tipo;
@@ -74,6 +76,7 @@ public class Boleto extends Cliente {
     }
     public void ventaBoleto(RegistroFinanciero registro){
         registro.registrarIngreso(precio);
+        RegistroFinancieroBD.guardarRegistro(precio, 0);
         System.out.println("Un cliente ha comprado un boleto");
         System.out.println("Ingreso recibido: " + precio);
     }

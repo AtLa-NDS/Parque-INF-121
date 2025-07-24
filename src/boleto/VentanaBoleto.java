@@ -5,7 +5,7 @@ import AdministradorCentralParque.RegistroFinanciero;
 
 import javax.swing.*;
 import java.awt.*;
-
+import BD.*;
 public class VentanaBoleto extends JFrame {
     private JTextField campoEdad;
     private JTextField campoAltura;
@@ -18,7 +18,6 @@ public class VentanaBoleto extends JFrame {
 
     public VentanaBoleto(RegistroFinanciero registroExistente) {
         this.registro = registroExistente;
-
         setTitle("Gestión de Boletos");
         setSize(600, 500);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -69,6 +68,9 @@ public class VentanaBoleto extends JFrame {
 
         btnVender.addActionListener(e -> {
             if (boletoActual != null) {
+                registro.registrarIngreso(boletoActual.getPrecio());
+                RegistroFinancieroBD.guardarRegistro(boletoActual.getPrecio(), 0);
+
                 boletoActual.ventaBoleto(registro);
                 areaTexto.append("\nVenta realizada.\n");
                 areaTexto.append("Ingresos totales registrados: Bs." + registro.getTotal() + "\n");
@@ -76,6 +78,7 @@ public class VentanaBoleto extends JFrame {
                 JOptionPane.showMessageDialog(this, "Primero genera un boleto.");
             }
         });
+
     }
 }
 

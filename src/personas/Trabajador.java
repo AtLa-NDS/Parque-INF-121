@@ -6,6 +6,8 @@ public class Trabajador {
     private String cargo;
     private double sueldo;
 
+    public Trabajador() {}
+
     public Trabajador(String nombre, int edad, int nroId, String cargo, double sueldo) {
         this.nombre = nombre;
         this.edad = edad;

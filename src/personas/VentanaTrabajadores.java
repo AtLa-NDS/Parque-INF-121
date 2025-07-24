@@ -4,6 +4,7 @@ import AdministradorCentralParque.RegistroFinanciero;
 
 import javax.swing.*;
 import java.awt.*;
+import BD.*;
 
 public class VentanaTrabajadores extends JFrame {
 
@@ -54,7 +55,7 @@ public class VentanaTrabajadores extends JFrame {
         btnCambiarCargo.addActionListener(e -> cambiarCargo());
         btnBuscar.addActionListener(e -> buscarTrabajador());
         btnDespedir.addActionListener(e -> despedirTrabajador());
-        btnPagarSueldos.addActionListener(e -> pagarSueldos());
+        // btnPagarSueldos.addActionListener(e -> pagarSueldos());
     }
 
     private void añadirTrabajador() {
@@ -66,6 +67,7 @@ public class VentanaTrabajadores extends JFrame {
             double sueldo = Double.parseDouble(JOptionPane.showInputDialog(this, "Sueldo:"));
 
             Trabajador t = new Trabajador(nombre, edad, nroId, cargo, sueldo);
+            TrabajadorBD.insertarTrabajador(t);
             String resultado = gestionTrabajador.añadirTrabajador(t);
 
             JOptionPane.showMessageDialog(this, resultado);
@@ -114,11 +116,12 @@ public class VentanaTrabajadores extends JFrame {
             JOptionPane.showMessageDialog(this, "Error al despedir trabajador: " + ex.getMessage());
         }
     }
-
+    /*
     private void pagarSueldos() {
         String resultado = gestionTrabajador.pagarSueldo(registro);
         JOptionPane.showMessageDialog(this, resultado);
     }
+    */
 }
 
 
