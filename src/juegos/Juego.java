@@ -14,7 +14,7 @@ public abstract class Juego {
     public abstract void iniciar();
 
     public void mostrarInfo() {
-        System.out.println("\nInformación del Juego:");
+        System.out.println("\nInformacion del Juego:");
         System.out.println("Nombre: " + nombre);
         System.out.println("Capacidad: " + capacidad + " personas");
         System.out.println("Estado: " + estado);

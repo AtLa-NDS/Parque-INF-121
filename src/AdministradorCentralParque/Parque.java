@@ -24,10 +24,15 @@ public class Parque {
         inventario.agregarProducto(new Producto("Pelota", 10, 15.0, "Juguete"));
         inventario.agregarProducto(new Producto("Camisa", 5, 50.0, "Ropa"));
         inventario.agregarProducto(new Producto("Oreo", 0, 2.5, "Comestible"));
+
     }
 
 
     public void simularVisitaCliente() {
+        // sin esto no se puede emplear el metod de verificar
+        JuegoMecanico ruedaFortuna = new JuegoMecanico("Rueda de la Fortuna", 8,
+                "operativo", 8, 100, 20.0, 5);
+
         // Crear y vender boletos
         Cliente cliente1 = new Cliente(25, 170);
         Boleto boleto1 = new Boleto(cliente1.getEdad(), cliente1.getAltura());
@@ -38,6 +43,9 @@ public class Parque {
         Boleto boleto4 = new Boleto(5, 100);
         boleto4.ventaBoleto(registro);
         boleto4.mostrar();
+        ruedaFortuna.permitirAcceso(boleto4,registro);
+
+
 
         // Consumo en restaurante
         restaurante.mostrarMenu();
@@ -51,6 +59,7 @@ public class Parque {
     }
 
     public void trabajadores(){
+
         // Añadir trabajador
         Trabajador empl1 = new Trabajador("Raul Mande",20,100,"Administrador",500.0 );
         empl1.mostrarInfoEmpleado();

@@ -13,10 +13,10 @@ public class Espectaculos extends Juego {
     @Override
     public void iniciar() {
         if (getEstado()) {
-            System.out.println("El espectáculo " + getNombre() +   show +" ha comenzado en el horario: " + horario);
-            System.out.println("Capacidad máxima: " + getCapacidad() + " personas");
+            System.out.println("El espectaculo " + getNombre() +   show +" ha comenzado en el horario: " + horario);
+            System.out.println("Capacidad maxima: " + getCapacidad() + " personas");
         } else {
-            System.out.println("El espectáculo " + getNombre() + " no está disponible en este momento.");
+            System.out.println("El espectaculo " + getNombre() + " no esta disponible en este momento.");
         }
     }
 
@@ -25,7 +25,7 @@ public class Espectaculos extends Juego {
         super.mostrarInfo();
         System.out.println("Horario: " + horario);
         System.out.println("Show: " + show);
-        System.out.println("Tipo: Espectáculo");
+        System.out.println("Tipo: Espectaculo");
     }
 
 }
