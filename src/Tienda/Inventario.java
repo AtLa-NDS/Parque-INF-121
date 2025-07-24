@@ -27,6 +27,13 @@ public class Inventario {
         return "Producto no encontrado.";
     }
 
+    public void mostrarInventario() {
+        System.out.println("Inventario de la tienda:");
+        for (Producto p : productos) {
+            System.out.println(p.descripcion());  // usa el método descripcion() que tienes en Producto
+        }
+    }
+
     public String reponerProducto(String nombre, int cantidad, RegistroFinanciero registro) {
         for (Producto p : productos) {
             if (p.getNombre().equalsIgnoreCase(nombre)) {
