@@ -1,42 +1,56 @@
 package Tienda;
+
 import AdministradorCentralParque.RegistroFinanciero;
-import java.util.ArrayList;
 
-public class Inventario {
-    private ArrayList<Producto> productos;
+public class Producto {
+    private String nombre;
+    private int cantidad;
+    private double precio;
+    private String tipo;
 
-    public Inventario() {
-        productos = new ArrayList<>();
+    public Producto(String nombre, int cantidad, double precio, String tipo) {
+        this.nombre = nombre;
+        this.cantidad = cantidad;
+        this.precio = precio;
+        this.tipo = tipo;
     }
 
-    public void agregarProducto(Producto p) {
-        productos.add(p);
-        System.out.println("Producto agregado: " + p.getNombre());
+    public String getNombre() {
+        return nombre;
     }
 
-    public void mostrarInventario() {
-        System.out.println("Inventario de la tienda:");
-        for (Producto p : productos) {
-            p.mostrar();
+    public int getCantidad() {
+        return cantidad;
+    }
+
+    public double getPrecio() {
+        return precio;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public String vender(int unidades, RegistroFinanciero registro) {
+        if (unidades <= cantidad) {
+            cantidad -= unidades;
+            double monto = unidades * precio;
+            registro.registrarIngreso(monto);
+            return "Se vendieron " + unidades + " unidades. Ingreso: " + monto;
+        } else {
+            return "No hay suficiente stock.";
         }
     }
 
-    public void venderProducto(String nombre, int cantidad,RegistroFinanciero registro) {
-        for (Producto p : productos) {
-            if (p.getNombre().equalsIgnoreCase(nombre)) {
-                p.vender(cantidad,registro);
-                return;
-            }
-        }
-        System.out.println("Producto no encontrado");
+    public String reponerInventario(int cantidad, RegistroFinanciero registro) {
+        double gasto = cantidad * precio * 0.2;
+        registro.registrarGasto(gasto);
+        this.cantidad += cantidad;
+        return "Se han repuesto " + cantidad + " unidades. Gasto: " + gasto;
     }
-    public void reponerProducto(String nombre, int cantidad, RegistroFinanciero registro) {
-        for (Producto p : productos) {
-            if (p.getNombre().equalsIgnoreCase(nombre)) {
-                p.reponerInventario(cantidad, registro);
-                return;
-            }
-        }
-        System.out.println("Producto no encontrado para reponer");
+
+    // Método para obtener una descripción del producto, para mostrar en GUI o logs
+    public String descripcion() {
+        return "Nombre: " + nombre + ", Tipo: " + tipo + ", Precio: " + precio + ", Cantidad: " + cantidad;
     }
 }
