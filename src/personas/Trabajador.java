@@ -1,5 +1,4 @@
 package personas;
-import AdministradorCentralParque.*;
 public class Trabajador {
     private String nombre;
     private int edad;
@@ -45,4 +44,14 @@ public class Trabajador {
     public void setSueldo(double sueldo) {
         this.sueldo = sueldo;
     }
+    public String getNombre() {
+        return nombre;
+    }
+    public int getEdad() {
+        return edad;
+    }
+    public String getCargo() {
+        return cargo;
+    }
+
 }

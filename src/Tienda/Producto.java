@@ -49,8 +49,9 @@ public class Producto {
         return "Se han repuesto " + cantidad + " unidades. Gasto: " + gasto;
     }
 
-    public void mostrar() {
-        System.out.println("nombre: *" + nombre + " tipo: " + tipo + " precio: " + precio + " cantidad: " + cantidad);
+    public String descripcion() {
+        return "Nombre: " + nombre + ", Tipo: " + tipo + ", Precio: " + precio + ", Cantidad: " + cantidad;
     }
 }
+
 

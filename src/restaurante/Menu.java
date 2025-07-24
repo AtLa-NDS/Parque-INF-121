@@ -2,13 +2,17 @@ package restaurante;
 
 public class Menu {
     private String plato;
+
     public Menu(String nombreplato){
-        this.plato=nombreplato;
+        this.plato = nombreplato;
     }
+
     public String getPlato(){
         return plato;
     }
-    public void mostrar(){
-        System.out.println(plato);
+
+    public String mostrar() {
+        return plato;
     }
 }
+

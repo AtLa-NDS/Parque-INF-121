@@ -1,7 +1,7 @@
 package juegos;
 
-import boleto.*;
 import AdministradorCentralParque.RegistroFinanciero;
+import boleto.*;
 
 public class JuegoMecanico extends Juego {
     private int edadMinima;
@@ -19,64 +19,83 @@ public class JuegoMecanico extends Juego {
         this.duracionViaje = duracionViaje;
     }
 
-
-    public void permitirAcceso(Boleto boleto, RegistroFinanciero registro) {
+    public String permitirAcceso(Boleto boleto, RegistroFinanciero registro) {
         if (boleto.getEdad() < edadMinima || boleto.getAltura() < alturaMinima) {
-            System.out.println("El cliente no cumple los requisitos para " + getNombre());
-            return;
+            String mensaje = "El cliente no cumple los requisitos para " + getNombre();
+            System.out.println(mensaje);
+            return mensaje;
         }
-        System.out.println("Acceso permitido a " + getNombre());
-    }
-
-
-    public void iniciar() {
-        if (!getEstado()) {
-            System.out.println(getNombre() + " no esta disponible");
-            return;
-        }
-        System.out.println("Iniciando " + getNombre() + " con " + getCapacidad() + " pasajeros");
-        System.out.println("Velocidad máxima: " + velocidadMaxima + " km/h");
-        System.out.println("Duración del viaje: " + duracionViaje + " minutos");
-        enUso = true;
-    }
-    public void finalizar() {
-        if (enUso) {
-            System.out.println("Finalizando " + getNombre());
-            enUso = false;
-        }
-    }
-    public void cambiarEstado(boolean nuevoEstado) {
-        this.setEstado(nuevoEstado);
-        if (nuevoEstado) {
-            System.out.println("El juego " + getNombre() + " esta operando");
-        } else {
-            System.out.println("El juego " + getNombre() + " esta en mantenimieto");
-        }
-    }
-    public void obtenerEstadoActual() {
-        if (getEstado()) {
-            System.out.println("El juego " + getNombre() + " esta operando");
-        } else {
-            System.out.println("El juego " + getNombre() + " esta en mantenimieto");
-        }
+        String mensaje = "Acceso permitido a " + getNombre();
+        System.out.println(mensaje);
+        return mensaje;
     }
 
     @Override
-    public void mostrarInfo() {
-        super.mostrarInfo();
-        System.out.println("\n----------------------------------");
-        System.out.println("      Informacion del juego ");
-        System.out.println("----------------------------------");
-        System.out.println("Nombre: " + getNombre());
-        System.out.println("Capacidad: " + getCapacidad() );
-        System.out.println("Requisitos para acceder: ");
-        System.out.println("Edad minima: " + edadMinima + " años");
-        System.out.println("Altura mínima: " + alturaMinima + " cm");
-        System.out.println("Características:");
-        System.out.println("Velocidad maxima: " + velocidadMaxima + " km/h");
-        System.out.println("Duración del viaje: " + duracionViaje + " minutos");
-        System.out.println("----------------------------------\n");
-
+    public String iniciar() {
+        if (!getEstado()) {
+            String mensaje = getNombre() + " no está disponible";
+            System.out.println(mensaje);
+            return mensaje;
+        }
+        StringBuilder sb = new StringBuilder();
+        sb.append("Iniciando ").append(getNombre()).append(" con ").append(getCapacidad()).append(" pasajeros\n");
+        sb.append("Velocidad máxima: ").append(velocidadMaxima).append(" km/h\n");
+        sb.append("Duración del viaje: ").append(duracionViaje).append(" minutos\n");
+        System.out.print(sb.toString());
+        enUso = true;
+        return sb.toString();
     }
 
+    public String finalizar() {
+        if (enUso) {
+            String mensaje = "Finalizando " + getNombre();
+            System.out.println(mensaje);
+            enUso = false;
+            return mensaje;
+        }
+        return "";
+    }
+
+    public String cambiarEstado(boolean nuevoEstado) {
+        this.setEstado(nuevoEstado);
+        String mensaje;
+        if (nuevoEstado) {
+            mensaje = "El juego " + getNombre() + " está operando";
+        } else {
+            mensaje = "El juego " + getNombre() + " está en mantenimiento";
+        }
+        System.out.println(mensaje);
+        return mensaje;
+    }
+
+    public String obtenerEstadoActual() {
+        String mensaje;
+        if (getEstado()) {
+            mensaje = "El juego " + getNombre() + " está operando";
+        } else {
+            mensaje = "El juego " + getNombre() + " está en mantenimiento";
+        }
+        System.out.println(mensaje);
+        return mensaje;
+    }
+
+    @Override
+    public String mostrarInfo() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(super.mostrarInfo());
+        sb.append("\n----------------------------------\n");
+        sb.append("      Informacion del juego \n");
+        sb.append("----------------------------------\n");
+        sb.append("Nombre: ").append(getNombre()).append("\n");
+        sb.append("Capacidad: ").append(getCapacidad()).append("\n");
+        sb.append("Requisitos para acceder: \n");
+        sb.append("Edad minima: ").append(edadMinima).append(" años\n");
+        sb.append("Altura mínima: ").append(alturaMinima).append(" cm\n");
+        sb.append("Características:\n");
+        sb.append("Velocidad maxima: ").append(velocidadMaxima).append(" km/h\n");
+        sb.append("Duración del viaje: ").append(duracionViaje).append(" minutos\n");
+        sb.append("----------------------------------\n\n");
+        System.out.print(sb.toString());
+        return sb.toString();
+    }
 }

@@ -11,21 +11,28 @@ public class Espectaculos extends Juego {
     }
 
     @Override
-    public void iniciar() {
+    public String iniciar() {
         if (getEstado()) {
-            System.out.println("El espectaculo " + getNombre() +   show +" ha comenzado en el horario: " + horario);
-            System.out.println("Capacidad maxima: " + getCapacidad() + " personas");
+            String mensaje = "El espectáculo " + getNombre() + " " + show + " ha comenzado en el horario: " + horario + "\n" +
+                    "Capacidad máxima: " + getCapacidad() + " personas";
+            System.out.println(mensaje);
+            return mensaje;
         } else {
-            System.out.println("El espectaculo " + getNombre() + " no esta disponible en este momento.");
+            String mensaje = "El espectáculo " + getNombre() + " no está disponible en este momento.";
+            System.out.println(mensaje);
+            return mensaje;
         }
     }
 
     @Override
-    public void mostrarInfo() {
-        super.mostrarInfo();
-        System.out.println("Horario: " + horario);
-        System.out.println("Show: " + show);
-        System.out.println("Tipo: Espectaculo");
+    public String mostrarInfo() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(super.mostrarInfo());
+        sb.append("Horario: ").append(horario).append("\n");
+        sb.append("Show: ").append(show).append("\n");
+        sb.append("Tipo: Espectáculo\n");
+        System.out.print(sb.toString());
+        return sb.toString();
     }
-
 }
+

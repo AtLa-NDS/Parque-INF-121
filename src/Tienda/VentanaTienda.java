@@ -14,7 +14,7 @@ public class VentanaTienda extends JFrame {
     public VentanaTienda() {
         setTitle("Tienda del Parque");
         setSize(600, 500);
-        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // Para cerrar solo esta ventana
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); 
         setLocationRelativeTo(null);
 
         inventario = new Inventario();

@@ -1,7 +1,5 @@
 package personas;
 
-import AdministradorCentralParque.RegistroFinanciero;
-
 public class GestionTrabajador {
     private Trabajador[] trabajadores;
     private int cantidad;
@@ -12,58 +10,93 @@ public class GestionTrabajador {
         cantidad = 0;
     }
 
-    public void añadirTrabajador(Trabajador trabajador) {
-            if (cantidad < maxTrabajadores) {
-                for (int i = 0; i < cantidad; i++) {
-                    if (trabajadores[i].getNroId() == trabajador.getNroId()) {
-                        System.out.println("-Ya existe un trabajdor con el ID: " + trabajador.getNroId());
-                        return;
-                    }
+    public String añadirTrabajador(Trabajador trabajador) {
+        String mensaje;
+        if (cantidad < maxTrabajadores) {
+            for (int i = 0; i < cantidad; i++) {
+                if (trabajadores[i].getNroId() == trabajador.getNroId()) {
+                    mensaje = "-Ya existe un trabajador con el ID: " + trabajador.getNroId();
+                    System.out.println(mensaje);
+                    return mensaje;
                 }
-                trabajadores[cantidad] = trabajador;
-                cantidad++;
-                System.out.println("-Trabajador añadido");
-            } else {
-                System.out.println("-Ya no hay bacantes para mas empleados");
             }
-    }
-
-    public void mostrarListaTrabajadores() {
-        System.out.println("\nLista de Trabajadores: " + cantidad + "/" + maxTrabajadores);
-        System.out.println("---------------------------------------------------------------------------------------------");
-        for (int i = 0; i < cantidad; i++) {
-            trabajadores[i].mostrarlista();
-            System.out.println("---------------------------------------------------------------------------------------------");
+            trabajadores[cantidad] = trabajador;
+            cantidad++;
+            mensaje = "-Trabajador añadido";
+            System.out.println(mensaje);
+            return mensaje;
+        } else {
+            mensaje = "-Ya no hay vacantes para más empleados";
+            System.out.println(mensaje);
+            return mensaje;
         }
     }
 
-    public void cambiarCargo(int nroId, String cargoNuevo, double sueldoNeuvo) {
+    public String mostrarListaTrabajadores() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("\nLista de Trabajadores: ").append(cantidad).append("/").append(maxTrabajadores).append("\n");
+        sb.append("---------------------------------------------------------------------------------------------\n");
+        for (int i = 0; i < cantidad; i++) {
+            String trabajadorInfo = trabajadores[i].getNombre() + " | Edad: " + trabajadores[i].getEdad() + " años" +
+                    " | NroId: " + trabajadores[i].getNroId() + " | Cargo: " + trabajadores[i].getCargo() +
+                    " | Sueldo: " + trabajadores[i].getSueldo();
+            sb.append("| Nombre: ").append(trabajadores[i].getNombre())
+              .append(" | Edad: ").append(trabajadores[i].getEdad()).append(" años")
+              .append(" | NroId: ").append(trabajadores[i].getNroId())
+              .append(" | Cargo: ").append(trabajadores[i].getCargo())
+              .append(" | Sueldo: ").append(trabajadores[i].getSueldo())
+              .append(" |\n");
+            sb.append("---------------------------------------------------------------------------------------------\n");
+        }
+        String resultado = sb.toString();
+        System.out.println(resultado);
+        return resultado;
+    }
+
+    public String cambiarCargo(int nroId, String cargoNuevo, double sueldoNuevo) {
+        String mensaje;
         System.out.println("\nActualizando cargo del trabajador " + nroId);
         for (int i = 0; i < cantidad; i++) {
             if (trabajadores[i].getNroId() == nroId) {
                 trabajadores[i].setCargo(cargoNuevo);
-                trabajadores[i].setSueldo(sueldoNeuvo);
-                System.out.println("Cargo actualizado para el trabajador " + nroId);
-                return;
+                trabajadores[i].setSueldo(sueldoNuevo);
+                mensaje = "Cargo actualizado para el trabajador " + nroId;
+                System.out.println(mensaje);
+                return mensaje;
             }
         }
-        System.out.println("no se encontró ningún trabajador con el ID " + nroId);
+        mensaje = "No se encontró ningún trabajador con el ID " + nroId;
+        System.out.println(mensaje);
+        return mensaje;
     }
 
-    public void buscarTrabajador(int nroId) {
+    public String buscarTrabajador(int nroId) {
         System.out.println("\nBuscando trabajador: " + nroId);
         for (int i = 0; i < cantidad; i++) {
             if (trabajadores[i].getNroId() == nroId) {
-                System.out.println("Informacion del trabajador " + nroId);
-                trabajadores[i].mostrarInfoEmpleado();
-                return;
+                StringBuilder sb = new StringBuilder();
+                sb.append("Información del trabajador ").append(nroId).append("\n");
+                sb.append("-------------------------\n");
+                sb.append("Información del empleado:\n");
+                sb.append("-------------------------\n");
+                sb.append("Nombre: ").append(trabajadores[i].getNombre()).append("\n");
+                sb.append("Edad: ").append(trabajadores[i].getEdad()).append(" años\n");
+                sb.append("NroId: ").append(trabajadores[i].getNroId()).append("\n");
+                sb.append("Cargo: ").append(trabajadores[i].getCargo()).append("\n");
+                sb.append("Sueldo de: ").append(trabajadores[i].getSueldo()).append("\n");
+                sb.append("-------------------------\n");
+                String info = sb.toString();
+                System.out.println(info);
+                return info;
             }
         }
-        System.out.println("No se encontro ningun trabajador con el ID " + nroId );
+        String noEncontrado = "No se encontró ningún trabajador con el ID " + nroId;
+        System.out.println(noEncontrado);
+        return noEncontrado;
     }
 
-    public void despedirTrabajador(int nroId) {
-        System.out.println("\nDespidiendo al trabador " + nroId);
+    public String despedirTrabajador(int nroId) {
+        System.out.println("\nDespidiendo al trabajador " + nroId);
         for (int i = 0; i < cantidad; i++) {
             if (trabajadores[i].getNroId() == nroId) {
                 for (int j = i; j < cantidad - 1; j++) {
@@ -71,27 +104,14 @@ public class GestionTrabajador {
                 }
                 trabajadores[cantidad - 1] = null;
                 cantidad--;
-                System.out.println("Trabajador " + nroId + " despedido");
-                return;
+                String mensaje = "Trabajador " + nroId + " despedido correctamente.";
+                System.out.println(mensaje);
+                return mensaje;
             }
         }
-        System.out.println("No se encontró ningún trabajador con ID " + nroId);
-    }
-
-    public void pagarSueldo(RegistroFinanciero registro) {
-        double total = 0.0;
-        for (int i = 0; i < cantidad; i++) {
-            if (trabajadores[i] != null) {
-                total += trabajadores[i].getSueldo();
-            }
-        }
-        registro.registrarGasto(total);
-        System.out.println("Total pagado a todos los trabajadores: " + total);
-    }
-    public void reponerIngredientes(RegistroFinanciero registro) {
-        double gasto = 100;
-        registro.registrarGasto(gasto);
-        System.out.println("Gasto por reposición: " + gasto);
+        String mensaje = "No se encontró ningún trabajador con el ID " + nroId;
+        System.out.println(mensaje);
+        return mensaje;
     }
 
 }

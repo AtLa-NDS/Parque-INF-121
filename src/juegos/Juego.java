@@ -11,24 +11,32 @@ public abstract class Juego {
         this.estado = true;
     }
 
-    public abstract void iniciar();
+    public abstract String iniciar();
 
-    public void mostrarInfo() {
-        System.out.println("\nInformacion del Juego:");
-        System.out.println("Nombre: " + nombre);
-        System.out.println("Capacidad: " + capacidad + " personas");
-        System.out.println("Estado: " + estado);
+    public String mostrarInfo() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("\nInformacion del Juego:\n");
+        sb.append("Nombre: ").append(nombre).append("\n");
+        sb.append("Capacidad: ").append(capacidad).append(" personas\n");
+        sb.append("Estado: ").append(estado).append("\n");
+        System.out.print(sb.toString());
+        return sb.toString();
     }
+
     protected void setEstado(boolean estado) {
         this.estado = estado;
     }
+
     protected boolean getEstado() {
         return estado;
     }
+
     public String getNombre() {
         return nombre;
     }
+
     public int getCapacidad() {
         return capacidad;
     }
 }
+

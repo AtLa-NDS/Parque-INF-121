@@ -30,7 +30,7 @@ public class Inventario {
     public void mostrarInventario() {
         System.out.println("Inventario de la tienda:");
         for (Producto p : productos) {
-            System.out.println(p.descripcion());  // usa el método descripcion() que tienes en Producto
+            System.out.println(p.descripcion());  
         }
     }
 
