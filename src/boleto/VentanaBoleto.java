@@ -1,4 +1,4 @@
-package Tienda;
+package boleto;
 
 import boleto.Boleto;
 import AdministradorCentralParque.RegistroFinanciero;
@@ -71,7 +71,7 @@ public class VentanaBoleto extends JFrame {
             if (boletoActual != null) {
                 boletoActual.ventaBoleto(registro);
                 areaTexto.append("\nVenta realizada.\n");
-                areaTexto.append("Ingresos totales registrados: Bs." + registro.getTotalIngresos() + "\n");
+                areaTexto.append("Ingresos totales registrados: Bs." + registro.getTotal() + "\n");
             } else {
                 JOptionPane.showMessageDialog(this, "Primero genera un boleto.");
             }
