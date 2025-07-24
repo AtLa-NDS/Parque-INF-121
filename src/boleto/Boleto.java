@@ -2,12 +2,19 @@ package boleto;
 import AdministradorCentralParque.RegistroFinanciero;
 
 import java.util.ArrayList;
-
+import promociones.*;
 public class Boleto extends Cliente {
     private String tipo;
     private double precio;
     private int id;
     private static int contador=1;
+
+    //-----------------------------------------
+    //activar evento manualmente
+    private boolean activarEvento=true;
+    Descuento descuento = new DescuentoNavidad();
+    EventoEspecial evento = new EventoEspecial("Navidad", descuento);
+    //--------------------------------------------
 
     private ArrayList<Cliente> clientes;
 
@@ -33,15 +40,27 @@ public class Boleto extends Cliente {
         if (edad>59){
             tipo="TerceraEdad";
             precio=200*0.5;
+            if (activarEvento) {
+                precio = evento.aplicarDescuento(precio);
+                System.out.println("Se aplico descuetno por " + evento.getTematica());
+            }
         }
-        //a;adir el descuento
+
         else if (edad<6){
             tipo="Menor";
             precio=200*0.3;
+            if (activarEvento) {
+                precio = evento.aplicarDescuento(precio);
+                System.out.println("Se aplico descuetno por " + evento.getTematica());
+            }
         }
         else{
             tipo="Normal";
             precio=200;
+            if (activarEvento) {
+                precio = evento.aplicarDescuento(precio);
+                System.out.println("Se aplico descuetno por " + evento.getTematica());
+            }
         }
 
     }
