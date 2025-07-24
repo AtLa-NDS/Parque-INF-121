@@ -12,13 +12,7 @@ public class Parque {
     private Restaurante restaurante;
     private Inventario inventario;
     GestionTrabajador gestor = new GestionTrabajador();
-    GestionBoletos sistema = new GestionBoletos(100);
-    public void iniciarEvento(){
-        JuegoMecanico.setEventoActivo(true);
-        Descuento descuentoHalloween = new DescuentoHallowen();
-        EventoEspecial halloween = new EventoEspecial("Halloween", descuentoHalloween);
 
-    }
     public Parque() {
         registro = new RegistroFinanciero();
         restaurante = new Restaurante();
@@ -34,21 +28,16 @@ public class Parque {
 
 
     public void simularVisitaCliente() {
-        JuegoMecanico carrusel = new JuegoMecanico("carrusel", 10, "Operando",
-                13,120,70,43);
         // Crear y vender boletos
-        Boleto boleto1 = sistema.crearBoleto(1);
-        boleto1.agregarCliente(new Cliente(25, 170));
+        Cliente cliente1 = new Cliente(25, 170);
+        Boleto boleto1 = new Boleto(cliente1.getEdad(), cliente1.getAltura());
+        boleto1.agregarCliente(cliente1);
         boleto1.ventaBoleto(registro);
+        boleto1.mostrar();
 
-        Boleto boleto2 = sistema.crearBoleto(1);
-        boleto2.agregarCliente(new Cliente(65, 165));
-        boleto2.ventaBoleto(registro);
-
-        // Acceder a la atracción
-        carrusel.permitirAcceso(boleto1, registro);
-        carrusel.permitirAcceso(boleto2, registro);
-        // Boleto boleto = new Boleto(65);
+        Boleto boleto4 = new Boleto(5, 100);
+        boleto1.ventaBoleto(registro);
+        boleto4.mostrar();
 
         // Consumo en restaurante
         restaurante.mostrarMenu();

@@ -1,13 +1,9 @@
 package juegos;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public abstract class Juego {
     protected String nombre;
     private int capacidad;
     private boolean estado;
-    private List<String> empleadosAsignados = new ArrayList<>();
 
     public Juego(String nombre, int capacidad, String estado) {
         this.nombre = nombre;
