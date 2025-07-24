@@ -36,7 +36,7 @@ public class Parque {
         boleto1.mostrar();
 
         Boleto boleto4 = new Boleto(5, 100);
-        boleto1.ventaBoleto(registro);
+        boleto4.ventaBoleto(registro);
         boleto4.mostrar();
 
         // Consumo en restaurante

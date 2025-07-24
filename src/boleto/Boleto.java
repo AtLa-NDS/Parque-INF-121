@@ -14,16 +14,21 @@ public class Boleto extends Cliente {
     public Boleto(int edad,int altura){
         super(edad,altura);
         clientes = new ArrayList<>();
-        id = contador;
+        id = contador++;
+        this.agregarCliente(new Cliente(edad, altura));
     }
     public void agregarCliente(Cliente cliente) {
-       clientes.add(cliente);
-
+        clientes.add(cliente);
+        verificarTipo();
+        System.out.println("Cliente agregado: " + id);
     }
 
     private void verificarTipo(){
 
-        int edad = clientes[cantClientes-1].getEdad();
+        if (clientes.isEmpty()) return;
+
+        Cliente ultimoCliente = clientes.get(clientes.size() - 1);
+        int edad = ultimoCliente.getEdad();
 
         if (edad>59){
             tipo="TerceraEdad";
@@ -40,13 +45,21 @@ public class Boleto extends Cliente {
         }
 
     }
-
     public void mostrar() {
-            System.out.println("ID: " + id + "\nEdad: " + clientes[cantClientes - 1].getEdad() + "\nTipo: " + tipo + "\nPrecio: Bs." + precio);
+        if (clientes.isEmpty()) {
+            System.out.println("el boleto " + id + " no tiene clientes.");
+            return;
+        }
+        Cliente ultCliente = clientes.get(clientes.size() - 1);
+        System.out.println("ID: " + id + "\nEdad: " + ultCliente.getEdad() + "\nTipo: " + tipo + "\nPrecio: Bs." + precio);
     }
     public void ventaBoleto(RegistroFinanciero registro){
         registro.registrarIngreso(precio);
         System.out.println("Un cliente ha comprado un boleto");
         System.out.println("Ingreso recibido: " + precio);
     }
+    public String getTipo() { return tipo; }
+    public double getPrecio() { return precio; }
+    public int getId() { return id; }
+    public ArrayList<Cliente> getClientes() { return new ArrayList<>(clientes); }
 }
