@@ -74,6 +74,7 @@ public class Parque {
 
             for (Trabajador t : trabajadores) {
                 TrabajadorBD.insertarTrabajador(t);
+                gestor.añadirTrabajador(t);
             }
             System.out.println("Los trabajadores fueron agragasdos correctamente");
         } catch (Exception e) {

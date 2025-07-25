@@ -8,13 +8,14 @@ public class Main {
 
     
         /*
-        parque.juegos();
-        parque.trabajadores();
-        parque.mostrarFinanzas();
+
         */
         Parque parque = new Parque();
-        parque.trabajadores();
         parque.simularVisitaCliente();
+        parque.trabajadores();
+        parque.juegos();
+        parque.mostrarFinanzas();
+
 
 
     }
